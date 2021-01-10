@@ -42,6 +42,9 @@
             auto_update: true
             whitelist:
               - features
+          docker-base:
+            pipeline: api-test-docker-base
+            stage: build
         environment_variables:
           DOCKERFILE_NAME: Dockerfile_executor
         stages: *build
