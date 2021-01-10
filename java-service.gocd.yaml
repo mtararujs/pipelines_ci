@@ -3,42 +3,42 @@
     common:
       deploy-tasks: &deploy-tasks
         - exec:
-          command: bash
-          arguments:
-            - -c
-            - echo "Deployment on ${ENV_NAME}"
+            command: bash
+            arguments:
+              - -c
+              - echo "Deployment on ${ENV_NAME}"
 
       test-tasks: &test-tasks
         - exec:
-          command: bash
-          arguments:
-            - -c
-            - echo "Running tests on ${ENV_NAME}"
+            command: bash
+            arguments:
+              - -c
+              - echo "Running tests on ${ENV_NAME}"
         - exec:
-          command: bash
-          arguments:
-            - -c
-            - docker run --network=host -d -t --name api_test_executor_${ENV_NAME} api_test_executor:latest
+            command: bash
+            arguments:
+              - -c
+              - docker run --network=host -d -t --name api_test_executor_${ENV_NAME} api_test_executor:latest
         - exec:
-          command: bash
-          arguments:
-            - -c
-            - docker exec api_test_executor_${ENV_NAME} cucumber --tags=@${ENV_NAME} --format progress -c --format html --out test-output/report.html
+            command: bash
+            arguments:
+              - -c
+              - docker exec api_test_executor_${ENV_NAME} cucumber --tags=@${ENV_NAME} --format progress -c --format html --out test-output/report.html
         - exec:
-          command: bash
-          arguments:
-            - -c
-            - docker cp api_test_executor_${ENV_NAME}:/usr/src/api-tests/test-output/report.html report_${environment}.html
+            command: bash
+            arguments:
+              - -c
+              - docker cp api_test_executor_${ENV_NAME}:/usr/src/api-tests/test-output/report.html report_${environment}.html
         - exec:
-          command: bash
-          arguments:
-            - -c
-            - docker stop api_test_executor_${ENV_NAME}
+            command: bash
+            arguments:
+              - -c
+              - docker stop api_test_executor_${ENV_NAME}
         - exec:
-          command: bash
-          arguments:
-            - -c
-            - docker rm api_test_executor_${ENV_NAME}       
+            command: bash
+            arguments:
+              - -c
+              - docker rm api_test_executor_${ENV_NAME}       
 
     pipelines:
       java-app:
