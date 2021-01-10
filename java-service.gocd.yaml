@@ -73,12 +73,7 @@
               clean_workspace: true
               jobs:
                 build:
-                  tasks:
-                    - exec:
-                        command: bash
-                        arguments:
-                          - -c
-                          - echo "Testing on DEV"
+                  tasks: *test-tasks
           - deploy-int:
               environment_variables:
                 ENV_NAME: int
@@ -90,12 +85,7 @@
               clean_workspace: true
               jobs:
                 build:
-                  tasks:
-                    - exec:
-                        command: bash
-                        arguments:
-                          - -c
-                          - echo "Testing on INT"
+                  tasks: *test-tasks
           - deploy-prd:
               environment_variables:
                 ENV_NAME: prd
@@ -107,10 +97,5 @@
               clean_workspace: true
               jobs:
                 build:
-                  tasks:
-                    - exec:
-                        command: bash
-                        arguments:
-                          - -c
-                          - echo "Testing on PRD"
+                  tasks: *test-tasks
 
