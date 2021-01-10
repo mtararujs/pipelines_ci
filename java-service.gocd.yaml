@@ -77,7 +77,13 @@
                 ENV_NAME: dev
               clean_workspace: true
               jobs:
-                build:
+                test:
+                  artifacts:
+                    - build:
+                        source: report_dev.html
+                        destination: test-output/
+                  tabs:
+                    Report: test-output/report_dev.html
                   tasks: *test-tasks
           - deploy-int:
               environment_variables:
@@ -91,7 +97,13 @@
                 ENV_NAME: int
               clean_workspace: true
               jobs:
-                build:
+                test:
+                  artifacts:
+                    - build:
+                        source: report_int.html
+                        destination: test-output/
+                  tabs:
+                    Report: test-output/report_int.html
                   tasks: *test-tasks
           - deploy-prd:
               environment_variables:
@@ -105,6 +117,12 @@
                 ENV_NAME: prd
               clean_workspace: true
               jobs:
-                build:
+                test:
+                  artifacts:
+                    - build:
+                        source: report_prd.html
+                        destination: test-output/
+                  tabs:
+                    Report: test-output/report_prd.html
                   tasks: *test-tasks
 
