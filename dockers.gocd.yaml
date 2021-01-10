@@ -7,8 +7,8 @@
         label_template: "${api-automation}"
         materials:
           api-automation:
-            git: https://code.tdlbox.com/martins.tararujs/api_tests.git
-            branch: master
+            git: https://github.com/mtararujs/api_tests_ci.git
+            branch: main
             shallow_clone: true
             auto_update: true
             whitelist:
