@@ -13,12 +13,12 @@
           - Gemfile
       stages:
         - build:
-          clean_workspace: true
-          jobs:
-            build-docker:
-              tasks:
-                - exec:
-                  command: bash
-                  arguments:
-                    - -c
-                    - docker build -t api_test_base . -f Dockerfile_base
+            clean_workspace: true
+            jobs:
+              build-docker:
+                tasks:
+                  - exec:
+                    command: bash
+                    arguments:
+                      - -c
+                      - docker build -t api_test_base . -f Dockerfile_base
